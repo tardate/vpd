@@ -22,6 +22,7 @@ module ActiveRecord
 
       # Overrides ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#table_exists?
       # Change to only look in the current schema - unless schema is specified in the name
+      # This is required to enable rails migrations to run into the currently selected schema
       def table_exists?(name)
         schema, table = extract_schema_and_table(name.to_s)
         schema ||= current_schema

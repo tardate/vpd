@@ -5,12 +5,51 @@ Virtual Private Database for Rails
 This is a quick gemification of the schema partitioning solution for multi-tenancy support in Rails.
 It is EXPERIMENTAL and currently specific to PostgreSQL.
 
-The schema partitioning approach is described by Guy Naor in his definitive presentation:http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails
+It requires Rails 3.0.7+ and pg 0.11.0+.
+
+The schema partitioning approach is described by Guy Naor in his definitive presentation:[http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails]
 
 == What it does
 
 * patches the postgresql adapter so it is possible to run your rails migrations into a specific schema
 * adds helper methods for activating a selected schema
+
+== How to use it
+
+To install, add to your Gemfile:
+
+  gem 'vpd'
+
+and run bundle install.
+
+Once installed, it provides a number of methods to setup and switch between schemas.
+
+=== Vpd.activate(schema,verify_migration = false)
+
+This is the main method to switch to a specified schema.
+If you pass true for verify_migration, it will create the schema if necessary
+and make sure your rails migrations (in that schema) are up-to-date.
+
+How do you know which schema to switch to? Well, that's up to you .. could be
+on the basis of the request subdomain, or the an attribute of the current_user.
+  
+e.g. we might do this in a before_filter of our ApplicationController...
+
+  # this may evaluate to 'my_company' for example ..
+  schema_to_use = request.subdomains.last
+  if schema_to_use.present?
+    # now activate the schema
+    Vpd.activate(schema_to_use,true)
+  else
+    # ensure we are running with the default
+    Vpd.activate_default
+  end
+
+=== Vpd.activate_default
+Returns to default schema search path. This will either be '"$user",public' (postgres default)
+or the schema_search_path setting from your database.yml
+
+=== and a bunch of other methods #nodoc
 
 
 == What it doesn't do / things to do

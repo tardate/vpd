@@ -29,7 +29,8 @@ Gem::Specification.new do |s|
     "lib/vpd/postgresql_adapter.rb",
     "lib/vpd/version.rb",
     "test/helper.rb",
-    "test/test_vpd.rb"
+    "test/test_vpd.rb",
+    "vpd.gemspec"
   ]
   s.homepage = %q{http://github.com/tardate/vpd}
   s.licenses = ["MIT"]
