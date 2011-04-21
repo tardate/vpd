@@ -1,0 +1,37 @@
+= vpd
+
+Virtual Private Database for Rails
+
+This is a quick gemification of the schema partitioning solution for multi-tenancy support in Rails.
+It is EXPERIMENTAL and currently specific to PostgreSQL.
+
+The schema partitioning approach is described by Guy Naor in his definitive presentation:http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails
+
+== What it does
+
+* patches the postgresql adapter so it is possible to run your rails migrations into a specific schema
+* adds helper methods for activating a selected schema
+
+
+== What it doesn't do / things to do
+
+* Provide some syntactic sugar to allow migrations to be selectively included/excluded
+* Genericise the approach to support other db backends
+* Useful tests to ensure this isn't breaking soemthing in Rails that I haven't noticed yet
+* Find a way to do this without monkey-patching
+* Better documentation
+
+== Contributing to vpd
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2011 Paul Gallagher. See LICENSE for further details.
+
