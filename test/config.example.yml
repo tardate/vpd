@@ -1,0 +1,86 @@
+default_connection: <%= defined?(JRUBY_VERSION) ? 'jdbcsqlite3' : 'sqlite3' %>
+
+connections:
+  jdbcderby:
+    vpdunit:  vpd_unittest
+    
+  jdbch2:
+    vpdunit:  vpd_unittest
+    
+  jdbchsqldb:
+    vpdunit:  vpd_unittest
+    
+  jdbcmysql:
+    vpdunit:
+      username: vpdunit
+      encoding: utf8
+
+  jdbcpostgresql:
+    vpdunit:
+      username: <%= ENV['user'] || 'vpdunit' %>
+
+  jdbcsqlite3:
+    arunit:
+      database: <%= FIXTURES_ROOT %>/fixture_database.sqlite3
+      timeout:  5000
+
+  db2:
+    vpdunit:
+      host:     localhost
+      username: vpdunit
+      password: vpdunit
+      database: vpdunit
+
+  firebird:
+    vpdunit:
+      host: localhost
+      username: vpdunit
+      password: vpdunit
+      charset: UTF8
+
+  frontbase:
+    vpdunit:
+      host: localhost
+      username: vpdunit
+      session_name: unittest-<%= $$ %>
+
+  mysql:
+    vpdunit:
+      username: vpdunit
+      encoding: utf8
+
+  mysql2:
+    vpdunit:
+      username: vpdunit
+      encoding: utf8
+
+  openbase:
+    vpdunit:
+      username: admin
+
+  oracle:
+     vpdunit:
+       adapter: oracle_enhanced
+       database: <%= ENV['VPDUNIT_DB_NAME'] || 'orcl' %>
+       username: <%= ENV['VPDUNIT_USER_NAME'] || 'vpdunit' %>
+       password: <%= ENV['VPDUNIT_PASSWORD'] || 'vpdunit' %>
+       emulate_oracle_adapter: true
+
+  postgresql:
+    vpdunit:
+      min_messages: warning
+
+  sqlite3:
+    vpdunit:
+      database: <%= FIXTURES_ROOT %>/fixture_database.sqlite3
+      timeout:  5000
+
+  sqlite3_mem:
+    vpdunit:
+      adapter: sqlite3
+      database: ':memory:'
+
+  sybase:
+    vpdunit:
+      host: database_ASE
+      username: sa

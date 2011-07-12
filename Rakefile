@@ -9,6 +9,9 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
+require File.expand_path(File.dirname(__FILE__)) + "/test/config"
+require File.expand_path(File.dirname(__FILE__)) + "/test/support/config"
+
 $LOAD_PATH << './lib'
 require 'vpd'
 
@@ -59,3 +62,25 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+namespace :postgresql do
+  desc 'Build the PostgreSQL test databases'
+  task :build_databases do
+    config = VPDTest.config['connections']['postgresql']
+    %x( createdb -E UTF8 #{config['vpdunit']['database']} )
+  end
+
+  desc 'Drop the PostgreSQL test databases'
+  task :drop_databases do
+    config = VPDTest.config['connections']['postgresql']
+    %x( dropdb #{config['vpdunit']['database']} )
+  end
+
+  desc 'Rebuild the PostgreSQL test databases'
+  task :rebuild_databases => [:drop_databases, :build_databases]
+end
+
+task :build_postgresql_databases => 'postgresql:build_databases'
+task :drop_postgresql_databases => 'postgresql:drop_databases'
+task :rebuild_postgresql_databases => 'postgresql:rebuild_databases'
+
