@@ -11,8 +11,14 @@ It is EXPERIMENTAL and currently specific to PostgreSQL.
 
 It requires Rails 3.0.7+ and pg 0.11.0+.
 
-The schema partitioning approach is described by Guy Naor in his definitive presentation:
-[http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails]
+The schema partitioning approach is described by Guy Naor in his definitive presentation at
+{confreaks}[http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails]
+
+vpd was used as one of the demonstrations included in my
+{RedDotRubyConf 2011}[http://www.railsmine.net/2011/04/reddotrubyconf-2011-links-resources.html]
+presentation on
+{Multi-tenancy and Rails}[http://www.slideshare.net/tardate/multitenancy-with-rails]
+
 
 == What it does
 
