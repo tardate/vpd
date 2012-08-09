@@ -1,13 +1,18 @@
-= vpd
+PLEASE NOTE: vpd did it's job as a proof-of-concept but I don't have any plans for taking it further.
+The original patch it includes to make Rails behave correctly with PostgreSQL schemas is now in Rails itself.
+Brad Robertson's {apartment}[https://github.com/bradrobertson/apartment] gem is a complete implementation
+of the kind of ideas expressed here (and more), so if you have multi-tenant requirements I would recommend
+you check it out.
 
-Virtual Private Database for Rails
+= vpd - Virtual Private Database for Rails
 
 This is a quick gemification of the schema partitioning solution for multi-tenancy support in Rails.
 It is EXPERIMENTAL and currently specific to PostgreSQL.
 
 It requires Rails 3.0.7+ and pg 0.11.0+.
 
-The schema partitioning approach is described by Guy Naor in his definitive presentation:[http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails]
+The schema partitioning approach is described by Guy Naor in his definitive presentation:
+[http://confreaks.net/videos/111-aac2009-writing-multi-tenant-applications-in-rails]
 
 == What it does
 
@@ -32,7 +37,7 @@ and make sure your rails migrations (in that schema) are up-to-date.
 
 How do you know which schema to switch to? Well, that's up to you .. could be
 on the basis of the request subdomain, or the an attribute of the current_user.
-  
+
 e.g. we might do this in a before_filter of our ApplicationController...
 
   # this may evaluate to 'my_company' for example ..
@@ -61,7 +66,7 @@ or the schema_search_path setting from your database.yml
 * Better documentation
 
 == Contributing to vpd
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
